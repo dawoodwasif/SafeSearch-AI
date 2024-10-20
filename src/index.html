@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SafeSearch AI</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="background"></div>
+    <div class="container">
+      <div class="top"></div>
+      <div class="searchbar">
+        <div class="hamburger">
+          <img src="ss_logo.png" alt="Logo" style="width: 50px; height: 50px; margin-top: 10px; margin-left: 60px;">
+            <path
+              d="M 5 8 A 2.0002 2.0002 0 1 0 5 12 L 45 12 A 2.0002 2.0002 0 1 0 45 8 L 5 8 z M 5 23 A 2.0002 2.0002 0 1 0 5 27 L 45 27 A 2.0002 2.0002 0 1 0 45 23 L 5 23 z M 5 38 A 2.0002 2.0002 0 1 0 5 42 L 45 42 A 2.0002 2.0002 0 1 0 45 38 L 5 38 z"
+            ></path>
+          </svg>
+        </div>
+        <input type="text" class="search" placeholder="Enter to SafeSearch" />
+        <div class="search-icon">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            x="0px"
+            y="0px"
+            width="100"
+            height="100"
+            viewBox="0 0 50 50"
+          >
+            <path
+              d="M 21 3 C 11.601563 3 4 10.601563 4 20 C 4 29.398438 11.601563 37 21 37 C 24.355469 37 27.460938 36.015625 30.09375 34.34375 L 42.375 46.625 L 46.625 42.375 L 34.5 30.28125 C 36.679688 27.421875 38 23.878906 38 20 C 38 10.601563 30.398438 3 21 3 Z M 21 7 C 28.199219 7 34 12.800781 34 20 C 34 27.199219 28.199219 33 21 33 C 13.800781 33 8 27.199219 8 20 C 8 12.800781 13.800781 7 21 7 Z"
+            ></path>
+          </svg>
+        </div>
+      </div>
+      <!-- <div class="model-select">Gemini PRO</div> -->
+
+      <div class="left" style="font-size: 18px;">
+        Start surfing the web safely with SafeSearch AI. Enter something above to get started.
+      </div>
+            <div class="search-results">
+      </div>
+      <div class="right">
+        <div class="aiheader">AI Summary</div>
+        <div class="aicontent" id="aicontent"></div>
+      </div>
+      <input class="right2" type="text" placeholder="Chat with AI about the Topic"></input>
+      <div class="send-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="24px" height="24px">
+          <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+          <path d="M0 0h24v24H0z" fill="none"/>
+        </svg>
+      </div>
+      <div id="summaryPopup" class="popup">
+        <div class="popup-content">
+          <span class="close-button" onclick="closePopup()">×</span>
+          <h2 class="popup-header">Website Summary</h2>
+          <p id="summaryText"></p> 
+        </div>
+      </div>
+      <div id="askWebsitePopup" class="popup">
+        <div class="popup-content">
+          <span class="close-button" onclick="closeAskWebsitePopup()">×</span>
+          <h2 class="popup-header">Ask the Website</h2>
+          <div id="chatMessages"></div> 
+          <input type="text" id="userQuestion" placeholder="Enter your question">
+          <button onclick="sendQuestion()">Send</button>
+        </div>
+      </div>
+      <div class="skeleton-loader" id="skeletonLoader">
+        <div class="skeleton-result">
+          <div class="skeleton-title"></div>
+          <div class="skeleton-description"></div>
+          <div class="skeleton-buttons">
+            <div class="skeleton-button"></div>
+            <div class="skeleton-button"></div>
+          </div>
+        </div>
+        <!-- Repeat the above structure for more results -->
+        <div class="skeleton-result">
+          <div class="skeleton-title"></div>
+          <div class="skeleton-description"></div>
+          <div class="skeleton-buttons">
+            <div class="skeleton-button"></div>
+            <div class="skeleton-button"></div>
+          </div>
+        </div>
+        <!-- Repeat the above structure for more results -->
+        <div class="skeleton-result">
+          <div class="skeleton-title"></div>
+          <div class="skeleton-description"></div>
+          <div class="skeleton-buttons">
+            <div class="skeleton-button"></div>
+            <div class="skeleton-button"></div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="skeleton-loader-ai" id="skeletonLoaderAI">
+        <div class="skeleton-ai-content">
+          <div class="skeleton-ai-line"></div>
+          <div class="skeleton-ai-line"></div>
+          <div class="skeleton-ai-line"></div>
+          <div class="skeleton-ai-line"></div>
+        </div>
+      </div>
+    </div>
+  </body>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
+  <script>
+    VANTA.NET({
+      el: "#background",
+      mouseControls: true,
+      touchControls: true,
+      gyroControls: false,
+      minHeight: 200.00,
+      minWidth: 200.00,
+      scale: 1.00,
+      scaleMobile: 1.00,
+      color: 0xff0000,
+      points: 17.00,
+      maxDistance: 24.00
+    })
+    
+
+    document.addEventListener("DOMContentLoaded", function () {
+      const searchInput = document.querySelector(".search");
+      const searchIcon = document.querySelector(".search-icon");
+      const aiContent = document.getElementById("aicontent");
+      const searchResults = document.querySelector(".search-results");
+      const summaryPopup = document.getElementById("summaryPopup");
+      const summaryText = document.getElementById("summaryText");
+      const skeletonLoader = document.getElementById("skeletonLoader");
+      const skeletonLoaderAI = document.getElementById("skeletonLoaderAI");
+      const searchForText = document.querySelector(".left");
+      const askWebsitePopup = document.getElementById("askWebsitePopup");
+      let currentPage = 1;
+      let searchTerm = "";
+
+      function performSearch(page = 1) {
+        searchTerm = searchInput.value;
+
+        // Update "Search For" text
+        searchForText.textContent = `Search For "${searchTerm}"`;
+        console.log(searchTerm);
+
+        // Show skeleton loaders
+        skeletonLoader.style.display = "block";
+        skeletonLoaderAI.style.display = "block";
+        searchResults.style.display = "none";
+        aiContent.style.display = "none";
+
+        const aiApiUrl = `https://abhaykoul-aisearchengineapi.hf.space/v2/search?prompt=${encodeURIComponent(
+          searchTerm
+        )}`;
+
+        console.log(aiApiUrl);
+
+        const primarySearchApiUrl = `https://oevortex-webscout-api.hf.space/api/search?q=${encodeURIComponent(
+          searchTerm
+        )}&max_results=10&safesearch=moderate®ion=wt-wt&backend=lite`;
+
+        console.log(primarySearchApiUrl);
+
+        
+        const secondarySearchApiUrl = `https://oevortex-webscout-api.hf.space/api/search_google?q=${encodeURIComponent(
+          searchTerm
+        )}&max_results=10&safesearch=moderate®ion=wt-wt&page=${page}`;
+
+        console.log(primarySearchApiUrl);
+
+        // Try primary search API first
+        fetch(primarySearchApiUrl)
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error(`Primary search API failed: ${response.status}`);
+            }
+            return response.json();
+          })
+          .then((searchData) => {
+            return processSearchResults(searchData, aiApiUrl);
+          })
+          .catch((error) => {
+            console.warn("Primary search API failed, falling back to secondary:", error);
+            // Fallback to secondary search API if primary fails
+            return fetch(secondarySearchApiUrl)
+              .then((response) => response.text())
+              .then((searchData) => {
+                const searchResultsJson = JSON.parse(searchData);
+                return processSearchResults(searchResultsJson, aiApiUrl);
+              });
+          });
+      }
+
+
+      function parseMarkdown(markdownText) {
+        let htmlText = markdownText
+          .replace(/^### (.*$)/gim, '<h3> $1</h3>') // Headers level 3
+          .replace(/^## (.*$)/gim, '<h2> $1</h2>')  // Headers level 2
+          .replace(/^# (.*$)/gim, '<h1> $1</h1>')   // Headers level 1
+          .replace(/\*\*(.*)\*\*/gim, '<b> $1</b>') // Bold
+          .replace(/\*(.*)\*/gim, '<i> $1</i>')     // Italics
+          .replace(/\[(.*?)\]\((.*?)\)/gim, '<a href="$2" target="_blank">$1</a>'); // Links
+
+        return htmlText.trim(); // Clean up and return the final HTML
+      }
+
+      function processSearchResults(searchData, aiApiUrl) {
+        return fetch(aiApiUrl)
+          .then((response) => response.text())
+          .then((aiData) => {
+            skeletonLoader.style.display = "none";
+            skeletonLoaderAI.style.display = "none";
+            searchResults.style.display = "block";
+            aiContent.style.display = "block";
+
+            console.log(aiData);
+
+            const cleanedAiData = aiData
+              .replace(/<p>/g, "")
+              .replace(/data: /g, "")
+              .replace(/[DONE]/g, "")
+              .replace(/<i>/g, "<em>")
+              .replace(/<\/i>/g, "</em>")
+              .trim();
+            aiContent.innerHTML = cleanedAiData;
+
+            let searchResultsHtml = searchResults.innerHTML;
+            searchData.forEach((result) => {
+              searchResultsHtml += `
+                <div class="result">
+                  <a href="${result.href}" target="_blank">${result.title}</a> 
+                  <p>${result.body || result.abstract}</p> 
+                  <button class="summarize-btn" data-url="${result.href}">Summarize Site</button> 
+                  <button class="ask-website-btn">Ask Website</button>
+                </div>
+              `;
+            });
+            searchResults.innerHTML = searchResultsHtml;
+
+            searchResults.querySelectorAll(".summarize-btn").forEach((button) => {
+              button.addEventListener("click", function (event) {
+                const url = event.target.dataset.url;
+                summarizeWebsite(url);
+              });
+            });
+
+            searchResults.querySelectorAll(".ask-website-btn").forEach((button) => {
+              button.addEventListener("click", function (event) {
+                const url = event.target.parentNode.querySelector("a").href; 
+                openAskWebsitePopup(url);
+              });
+            });
+          })
+          .catch((error) => {
+            skeletonLoader.style.display = "none";
+            skeletonLoaderAI.style.display = "none";
+            searchResults.style.display = "block";
+            aiContent.style.display = "block";
+            console.error("Error fetching data:", error);
+          });
+      }
+
+      function summarizeWebsite(url) {
+        summaryPopup.style.display = "block";
+        summaryText.innerText = "Loading summary...";
+
+        const apiUrl = `https://oevortex-webscout-api.hf.space/api/website_summarizer?url=${encodeURIComponent(
+          url
+        )}`;
+
+        
+        fetch(apiUrl)
+          .then((response) => response.json())
+          .then((data) => {
+            summaryText.innerText = data[0];
+          })
+          .catch((error) => {
+            console.error("Error fetching summary:", error);
+            summaryText.innerText = "Error loading summary.";
+          });
+      }
+
+      window.closePopup = function () {
+        summaryPopup.style.display = "none";
+      };
+
+      function openAskWebsitePopup(url) {
+        askWebsitePopup.style.display = "block";
+        askWebsitePopup.dataset.url = url;
+        document.getElementById("chatMessages").innerHTML = '';
+      }
+
+      window.closeAskWebsitePopup = function closeAskWebsitePopup() {
+        askWebsitePopup.style.display = "none";
+      }
+
+      window.sendQuestion = function sendQuestion() {
+        const url = askWebsitePopup.dataset.url;
+        const question = document.getElementById("userQuestion").value;
+        const chatMessages = document.getElementById("chatMessages");
+
+        chatMessages.innerHTML += `<div class="user-message">You: ${question}</div>`;
+
+        const apiUrl = `https://oevortex-webscout-api.hf.space/api/ask_website?url=${encodeURIComponent(
+          url
+        )}&question=${encodeURIComponent(question)}&model=llama-3-70b`;
+
+        fetch(apiUrl)
+          .then((response) => response.json())
+          .then((data) => {
+            // Add website's answer to the chat
+            chatMessages.innerHTML += `<div class="website-message">Website: ${data[0]}</div>`;
+            document.getElementById("userQuestion").value = ""; // Clear the input field
+          })
+          .catch((error) => {
+            console.error("Error fetching answer:", error);
+            chatMessages.innerHTML += `<div class="error-message">Error getting answer.</div>`;
+          });
+      }
+
+      // Event listeners for search input and icon
+      searchInput.addEventListener("keydown", function (event) {
+        if (event.key === "Enter") {
+          console.log("Api hit");
+          currentPage = 1;
+          performSearch(currentPage);
+        }
+      });
+
+      searchIcon.addEventListener("click", function () {
+        currentPage = 1;
+        performSearch(currentPage);
+      });
+
+      // Infinite scroll
+      window.addEventListener("scroll", function () {
+        if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 100) {
+          currentPage++;
+          performSearch(currentPage);
+        }
+      });
+    });
+  </script>
+</html>
