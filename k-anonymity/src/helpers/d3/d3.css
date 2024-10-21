@@ -1,0 +1,30 @@
+.tooltip {
+	position: absolute;
+	display: none;
+	z-index: 99999;
+	pointer-events: none;
+	color: var(--color-grey1);
+	background: white;
+	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 0 2px 0 rgba(0, 0, 0, 0.1);
+	min-width: 180px;
+	top: 0;
+	padding: 8px 10px;
+	border-radius: 2px;
+	box-sizing: border-box;
+}
+
+value {
+	float: left;
+	color: var(--color-grey1);
+	margin: 0.25rem 1.5rem 0 0;
+}
+
+.label {
+	float: right;
+	color: var(--color-grey3);
+	margin: 0.25rem 0;
+}
+
+hr {
+	color: var(--color-grey3);
+}

@@ -1,0 +1,251 @@
+:root {
+	--color-base: #4d4c54;
+	--color-baseDark: #353538;
+	--color-baseWhite: #ffffff;
+
+	--color-grey1: #5e5c66;
+	--color-grey2: #817f8a;
+	--color-grey3: #b1b0b8;
+	--color-grey4: #d4d3db;
+	--color-grey5: #e9e8ed;
+	--color-grey6: #f5f5f7;
+	--color-grey7: #fafafb;
+
+	--color-primary: #7f3b97;
+	--color-primaryDark: #5e1e75;
+	--color-primaryLight: #a88bc9;
+	--color-primaryBackground: #eddff2;
+	--color-primaryOverlay: #ffffff;
+
+	--color-custom: var(--color-primary);
+	--color-customDark: var(--color-primaryDark);
+	--color-customLight: var(--color-primaryLight);
+	--color-customBackground: var(--color-primaryBackground);
+	--color-customOverlay: var(--color-primaryOverlay);
+
+	--color-error: #efa5a5;
+	--color-errorHover: #ad7575;
+
+	--color-alertError: #efa5a5;
+	--color-alertErrorBackground: #ffe0e0;
+	--color-alertWarning: #ffe263;
+	--color-alertWarningBackground: #fff9d9;
+	--color-alertSuccess: #88bd71;
+	--color-alertSuccessBackground: #dfefd8;
+	--color-alertDisabled: var(--color-grey4);
+	--color-alertErrorBackgroundHover: #e6d2d2;
+	--color-alertWarningBackgroundHover: #efe9cb;
+	--color-alertSuccessBackgroundHover: #d4e2cd;
+
+	--color-brandBackgroundPurple: #F8F3FD;
+	--color-brandBackgroundPink: #F9F2F9;
+	--color-brandBackgroundBlue: #F3F8FF;
+
+	--padding-content-full: 30px;
+	--padding-content-tablet: 1.875rem;
+	--padding-content-phablet: 1.25rem;
+	--padding-content-phone: 0.625rem;
+
+	--layout-contentPageMaxWidth: 64rem; /*1024px*/
+	--layout-headerHeight: 50px;
+	--layout-homeHeaderHeight: 68px;
+	--layout-footerHeight: 70px;
+	--layout-projectHeaderHeight: 2.1875rem; /*35px*/
+
+	--layout-workspace-contentPageMaxWidth: 900px;
+}
+
+
+body {
+	margin: 0;
+	width: 100vw;
+}
+
+h1 {
+	margin: 0;
+	font-family: 'Nunito Sans', sans-serif;
+	font-weight: 600;
+	font-size: 34px;
+	line-height: 46px;
+}
+
+h2 {
+	margin: 0;
+	font-family: 'Nunito Sans', sans-serif;
+	font-weight: 600;
+	font-size: 26px;
+	line-height: 35px;
+}
+
+h3 {
+	margin: 0;
+	font-family: 'Nunito Sans', sans-serif;
+	font-weight: 600;
+	font-size: 20px;
+	line-height: 27px;
+}
+
+h4 {
+	display: inline-block;
+	margin: 0;
+	font-family: 'Nunito Sans', sans-serif;
+	font-weight: 700;
+	font-size: 16px;
+	line-height: 22px;
+}
+
+h5 {
+	display: inline-block;
+	margin: 0;
+	font-family: 'Nunito Sans', sans-serif;
+	font-weight: 600;
+	font-size: 16px;
+	line-height: 22px;
+}
+
+h6 {
+	display: inline-block;
+	margin: 0;
+	font-family: 'Nunito Sans', sans-serif;
+	font-weight: 600;
+	font-size: 12px;
+	line-height: 0.9rem;
+}
+
+small {
+	font-family: 'Nunito Sans', sans-serif;
+	font-weight: 600;
+	font-size: 10px;
+	line-height: 14px;
+}
+
+p:not(:last-of-type) {
+	margin-bottom: 6px;
+}
+p {
+	margin-block-end: 0;
+	margin-block-start: 0;
+	-webkit-margin-before: 0;
+	-webkit-margin-after: 0;
+}
+
+
+hr {
+	margin: 0;
+	border: 0.5px solid var(--color-grey4);
+	clear: both;
+}
+
+#root {
+	width: 100%;
+	height: 100%;
+}
+
+html {
+	color: var(--color-base);
+	height: 100%;
+	font-family: 'Nunito Sans', sans-serif;
+	font-weight: 400;
+}
+html,
+body {
+	position: relative;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	background-color: white;
+	box-sizing: border-box;
+	-moz-osx-font-smoothing: grayscale; /* fixes bold fonts in firefox */
+	-webkit-font-smoothing: antialiased;
+	-moz-font-smoothing: antialiased;
+	-o-font-smoothing: antialiased;
+	line-height: 1;
+}
+
+body {
+	min-width: 1024px;
+	min-height: 100%;
+	height: auto;
+	overflow: auto;
+	font-size: 14px;
+	line-height: 19px;
+}
+
+a {
+	text-decoration: none;
+	color: var(--color-customDark);
+}
+
+a:hover,
+a:focus {
+	text-decoration: underline;
+	color: var(--color-customDark);
+}
+
+*,
+*:before,
+*:after {
+	box-sizing: border-box;
+}
+
+*:focus {
+	outline: 0;
+}
+
+::selection {
+	background: var(--color-customBackground); /* WebKit/Blink Browsers */
+}
+
+img {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+input,
+textarea,
+body,
+text {
+	color: var(--color-base);
+	font-family: 'Nunito Sans', sans-serif;
+	font-weight: 600;
+	font-weight: inherit;
+	text-rendering: geometricPrecision;
+}
+
+button,
+select,
+textarea,
+input,
+text {
+	font-family: inherit;
+	font-size: inherit;
+	font-weight: inherit;
+	line-height: inherit;
+	text-rendering: geometricPrecision;
+}
+
+pre {
+	font-family: inherit;
+}
+
+/* Typography resets */
+div,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+pre,
+form,
+th,
+td {
+	margin: 0;
+	padding: 0;
+}
+
+/* Unordered Lists */
+ul li {
+	list-style: none;
+}
+

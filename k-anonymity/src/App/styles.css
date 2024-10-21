@@ -1,0 +1,36 @@
+.appWrapper{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.bodyWrapper{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: calc(100% - 50px);
+}
+
+.graphWrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.settings {
+    height: 100%;
+    overflow: auto;
+    display: inline-block;
+    width: 380px;
+    border-right: 1px solid var(--color-grey4);
+}
+
+.graph {
+    height: 100%;
+    overflow: auto;
+    display: inline-block;
+    width: calc(100% - 380px);
+    padding: 30px 50px 30px 30px;
+}
+
+

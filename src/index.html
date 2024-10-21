@@ -143,6 +143,10 @@
       function performSearch(page = 1) {
         searchTerm = searchInput.value;
 
+        // Clear old results
+        searchResults.innerHTML = ""; 
+        aiContent.innerHTML = "";
+
         // Update "Search For" text
         searchForText.textContent = `Search For "${searchTerm}"`;
         console.log(searchTerm);

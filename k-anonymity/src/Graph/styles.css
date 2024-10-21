@@ -1,0 +1,112 @@
+.header{
+    font-weight: 700;
+    color: var(--color-base);
+    margin-bottom: 10px;
+}
+
+.wrapper{
+    width: 600px;
+    height: 400px;
+    position: relative;
+}
+
+.footer{
+    width: 600px;
+    margin-top: 30px;
+    color: var(--color-base);
+}
+
+.descriptionWrapper{
+    width: 419px;
+    margin-bottom: 30px;
+}
+
+.downloadButton{
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+}
+
+.bars {
+    height: 100%;
+}
+.bar {
+    fill: var(--color-grey4);
+    rx: 1px;
+    ry: 1px;
+}
+
+.bar.highlighted{
+    fill: var(--color-custom);
+}
+
+.barOverlay {
+    opacity: 0;
+}
+
+.wrapperRect{
+    stroke: var(--color-grey4);
+    fill: transparent;
+    stroke-width: 1;
+    rx: 2;
+    ry: 2;
+}
+
+.axis > path {
+    stroke: transparent;
+}
+
+.xAxis{
+
+}
+
+.yAxis{
+
+}
+
+:global(.tick) line {
+    display: none;
+}
+
+:global(.tick) text {
+    font-size: 14px;
+    fill: var(--color-base);
+}
+
+.bar:not(.highlighted).hover {
+    fill: var(--color-customBackground);
+}
+
+.tooltip {
+    background: var(--color-base) !important;
+    min-width: 0 !important;
+    padding: 0 !important;
+}
+
+.row {
+    width: 100%;
+    display: inline-flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+}
+.row.top{
+    padding-right: 28px;
+}
+.value {
+    color: var(--color-primaryOverlay);
+}
+.label {
+    color: var(--color-grey3);
+    padding-right: 1rem;
+}
+.divider {
+    width: 100%;
+    height: 1px;
+    background-color: var(--color-grey2);
+}
+
+.axisLabel{
+    fill: var(--color-grey2);
+    text-anchor: middle;
+}

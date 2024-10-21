@@ -1,0 +1,41 @@
+.headerWrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 50px;
+    border-bottom: 4px solid var(--color-primary);
+}
+
+.header{
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 7px 30px 7px 20px;
+}
+
+.titleWrapper{
+    display: inline-flex;
+    align-items: center;
+}
+
+.headerLogo{
+
+}
+
+.divider{
+    height: 30px;
+    width: 1px;
+    background-color: var(--color-grey4);
+    margin: 0 15px;
+}
+
+.linkWrapper{
+    display: inline-flex;
+    align-items: center;
+}
+
+.buttonWrapper{
+    margin-left: 10px;
+}
+
+

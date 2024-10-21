@@ -1,0 +1,28 @@
+.sideBarWrapper{
+    overflow: auto;
+    min-height: 100%;
+}
+
+
+.sectionWrapper{
+    padding: 30px 50px;
+}
+.sectionWrapper:not(:first-child){
+    border-top: 1px solid var(--color-grey4);
+}
+.sectionHeader{
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.sectionText{
+    margin-bottom: 10px;
+}
+
+.fieldWrapper:not(:first-child){
+    margin-top: 20px;
+}
+
+.clearAll{
+    width: 139px;
+}
