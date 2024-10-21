@@ -11,13 +11,13 @@ html {
 }
 
 .container {
-  height: 90vh;
-  width: 95vw;
+  height: 93vh;
+  width: 90vw;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(to bottom, #09090b, #1c1a1d, #09090b);
+  background: linear-gradient(to bottom, #2a2626, #211f21, #09090b);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   padding: 20px;
   clip-path: polygon(
@@ -479,7 +479,7 @@ html {
 #askWebsitePopup .popup-header {
   text-align: center;
   margin-bottom: 20px;
-  color: #ffcccb; /* Same color as background */
+  color: #ADD8E6; /* Same color as background */
 }
 
 #chatMessages {
@@ -498,7 +498,7 @@ html {
 }
 
 .user-message {
-  background-color: #8B0000; /* User message color (match background) */
+  background-color: #070738; /* User message color (match background) */
   text-align: right;
 }
 
@@ -524,7 +524,7 @@ html {
 #askWebsitePopup button {
   padding: 10px;
   border: none;
-  background-color: #8B0000;
+  background-color: #79A7FF;
   color: white;
   cursor: pointer;
   right: 20px;
